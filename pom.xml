@@ -8,10 +8,9 @@
     <parent>
         <groupId>com.shoploc</groupId>
         <artifactId>shoploc-parent</artifactId>
-        <version>1.0.1</version>
-        <!-- Parent resolved from GitHub Packages (separate repos).
-             Monorepo: replace by <relativePath>../pom.xml</relativePath> -->
-        <relativePath/>
+        <version>1.0.2</version>
+        <!-- Use the parent POM included in this workspace. -->
+        <relativePath>../shoploc-parent/pom.xml</relativePath>
     </parent>
 
     <!-- groupId inherited from the parent -->
