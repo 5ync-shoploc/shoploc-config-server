@@ -3,7 +3,7 @@ server:
 
 spring:
   datasource:
-    url: ${DB_URL:jdbc:postgresql://localhost:5432/shoploc_order_dev}
+    url: ${DB_URL:jdbc:postgresql://localhost:5432/shoploc-db}
     username: ${DB_USERNAME:postgres}
     password: ${DB_PASSWORD:}
 
@@ -11,3 +11,9 @@ spring:
     hibernate:
       ddl-auto: update
     open-in-view: false
+    properties:
+      hibernate:
+        # MLD : base shoploc-db, un schéma par service -> l'order-service écrit dans le schéma "orders"
+        default_schema: orders
+        # crée le schéma "orders" s'il n'existe pas encore
+        hbm2ddl.create_namespaces: true
