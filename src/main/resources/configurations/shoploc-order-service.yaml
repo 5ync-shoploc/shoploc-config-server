@@ -17,3 +17,8 @@ spring:
         default_schema: orders
         # crée le schéma "orders" s'il n'existe pas encore
         hbm2ddl.create_namespaces: true
+
+shoploc:
+  catalog:
+    # adresse du service catalogue (appelé directement, sans passer par la Gateway)
+    base-url: ${CATALOG_URL:http://localhost:8081}
