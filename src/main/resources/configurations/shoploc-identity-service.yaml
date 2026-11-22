@@ -1,2 +1,20 @@
 server:
   port: 8083
+
+spring:
+  application:
+    name: shoploc-identity-service
+
+  datasource:
+    url: ${DB_URL:jdbc:postgresql://localhost:5432/shoploc-db}
+    username: ${DB_USERNAME:postgres}
+    password: ${DB_PASSWORD:}
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        default_schema: identity
+        hbm2ddl:
+          create_namespaces: true
