@@ -25,3 +25,39 @@ spring:
               uri: http://localhost:8083
               predicates:
                 - Path=/api/identity/**
+
+            # Contrat API (Swagger) de chaque service, agrégé dans le Swagger UI
+            # unique de la Gateway (http://localhost:8080/swagger-ui.html).
+            - id: identity-docs
+              uri: http://localhost:8083
+              predicates:
+                - Path=/docs/identity/v3/api-docs
+              filters:
+                - RewritePath=/docs/identity/v3/api-docs, /v3/api-docs
+
+            - id: catalog-docs
+              uri: http://localhost:8081
+              predicates:
+                - Path=/docs/catalog/v3/api-docs
+              filters:
+                - RewritePath=/docs/catalog/v3/api-docs, /v3/api-docs
+
+            - id: order-docs
+              uri: http://localhost:8082
+              predicates:
+                - Path=/docs/order/v3/api-docs
+              filters:
+                - RewritePath=/docs/order/v3/api-docs, /v3/api-docs
+
+# Swagger UI de la Gateway : un seul point d'entrée (port 8080) pour les 3 contrats.
+# Chaque service garde aussi son propre Swagger UI local (8081/8082/8083).
+springdoc:
+  swagger-ui:
+    urls-primary-name: Identity
+    urls:
+      - name: Identity
+        url: /docs/identity/v3/api-docs
+      - name: Catalog
+        url: /docs/catalog/v3/api-docs
+      - name: Order
+        url: /docs/order/v3/api-docs
