@@ -10,40 +10,40 @@ spring:
 
             # Catalog Service
             - id: catalog-service
-              uri: http://localhost:8081
+              uri: ${CATALOG_URL:http://localhost:8081}
               predicates:
                 - Path=/api/products/**
 
             # Order Service
             - id: order-service
-              uri: http://localhost:8082
+              uri: ${ORDER_URL:http://localhost:8082}
               predicates:
                 - Path=/api/order/**
 
             # Identity Service
             - id: identity-service
-              uri: http://localhost:8083
+              uri: ${IDENTITY_URL:http://localhost:8083}
               predicates:
                 - Path=/api/identity/**
 
             # Contrat API (Swagger) de chaque service, agrégé dans le Swagger UI
             # unique de la Gateway (http://localhost:8080/swagger-ui.html).
             - id: identity-docs
-              uri: http://localhost:8083
+              uri: ${IDENTITY_URL:http://localhost:8083}
               predicates:
                 - Path=/docs/identity/v3/api-docs
               filters:
                 - RewritePath=/docs/identity/v3/api-docs, /v3/api-docs
 
             - id: catalog-docs
-              uri: http://localhost:8081
+              uri: ${CATALOG_URL:http://localhost:8081}
               predicates:
                 - Path=/docs/catalog/v3/api-docs
               filters:
                 - RewritePath=/docs/catalog/v3/api-docs, /v3/api-docs
 
             - id: order-docs
-              uri: http://localhost:8082
+              uri: ${ORDER_URL:http://localhost:8082}
               predicates:
                 - Path=/docs/order/v3/api-docs
               filters:
